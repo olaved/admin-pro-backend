@@ -13,6 +13,9 @@ const app = express();
 
 app.use(cors());
 
+//Lectura y parseo del body
+app.use(express.json());
+
 dbConnection();
 //console.log(process.env);
 
@@ -23,13 +26,9 @@ dbConnection();
 
 
 //Rutas
-app.get('/', (req, resp) => {
 
-    resp.json({
-        ok: true,
-        msg: 'Hola Mundo24'
-    })
-})
+app.use('/api/usuarios', require('./routes/usuarios'));
+
 
 
 app.listen(3000, () => {
